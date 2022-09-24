@@ -1,10 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './components/App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { CounterApp } from './CounterApp';
+
+import { FirstApp } from './FirstApp';
+// import { HelloWorldApp } from './HelloWorldApp';
+import './styles.css';
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+
+ReactDOM.createRoot( document.getElementById('root') ).render(
+    <React.StrictMode>
+        <FirstApp/>
+        
+    </React.StrictMode>
+);
+
+
