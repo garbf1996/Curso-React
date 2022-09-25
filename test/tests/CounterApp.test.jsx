@@ -44,6 +44,8 @@ describe('Pruebas en el <CounterApp />', () => {
         // fireEvent.click( screen.getByText('Reset') );
         fireEvent.click(screen.getByRole('button', { name: 'btn-reset' }));
 
+        //screen.debug();
+
         expect( screen.getByText( 355 ) ).toBeTruthy();
 
     });
