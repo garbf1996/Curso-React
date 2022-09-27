@@ -1,8 +1,10 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState, } from 'react';
 import {getGifs} from '../helpers/getGifs.js';
 
 export const GifGrind = ({category}) => {
+
+ const [images, setImages] = useState([]);
  
   useEffect(()=>{
   getGifs(category);
