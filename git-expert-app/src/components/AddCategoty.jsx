@@ -29,7 +29,7 @@ setinputValue('');
      placeholder="Buscar gifs"
      value={inputValue}
     onChange={onInputChange}
-
+    
     
     />
     </form>

@@ -1,26 +1,25 @@
-
-import { useEffect, useState, } from 'react';
-import {getGifs} from '../helpers/getGifs.js';
+import {useGifs} from '../hooks/useFetchGifs.js';
 import Gifitem from './Gifitem.jsx';
 
 export const GifGrind = ({category}) => {
 
- const [images, setImages] = useState([]);
+const {images,isLoading} = useGifs(category); 
 
- const getImages = async()=>{
-  const newImages = await getGifs(category);
-  setImages(newImages);
- }
- 
-  useEffect( ()=>{
-  getImages();
-  },[]);
-  
-console.log(images);
+
+
   return (
     <>
-    <div className='card-grid'>
+    <br>
+    </br>
     <h1>{category}</h1>
+    <br></br>
+    {
+
+     isLoading && (<h2>Cragando..</h2>)
+
+    }
+    <div className='card-grid'>
+   
    
     {
      images.map((image) =>(
@@ -32,6 +31,7 @@ console.log(images);
      ))
     }
     </div>
+
     </>
   )
 
