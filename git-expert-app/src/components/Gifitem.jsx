@@ -1,6 +1,6 @@
 
 
-export default function Gifitem({title,url,id}) {
+export default function Gifitem({title,url}) {
 
    
   return (
