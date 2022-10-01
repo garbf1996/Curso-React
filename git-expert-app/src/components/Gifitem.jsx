@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 export default function Gifitem({title,url}) {
 
@@ -12,3 +12,10 @@ export default function Gifitem({title,url}) {
     </>
   )
 }
+
+Gifitem.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+
+};
+
