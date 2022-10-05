@@ -10,7 +10,6 @@ const [valor, setCounter] = useState({
   counter3: 30
 })
 
-console.log(valor)
 
 //Desestructurar
 const { counter1,counter2,counter3} = valor;
