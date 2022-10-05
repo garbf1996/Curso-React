@@ -8,4 +8,3 @@ export const Quote = ({author,quote}) => {
    </blockquote>
   )
 }
-
