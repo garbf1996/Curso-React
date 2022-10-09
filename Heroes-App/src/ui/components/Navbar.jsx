@@ -1,7 +1,19 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 export const Navbar = () => {
+//Custo hook para nevegacion
+const navigate = useNavigate();
+
+    //Funcion para cerrar la cesion
+    const onLogout = () =>{
+      //cerrar la cession
+     navigate('/login',{
+        //para evitar que pueda regresar a el hitorial anterio 
+        replace: true
+     });
+    }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
             
@@ -36,7 +48,7 @@ export const Navbar = () => {
                    <span className='nav-item nav-link text-primary'>
                      Garber Batista
                    </span>
-                   <button className='nav-item nav-link btn'>
+                   <button className='nav-item nav-link btn' onClick={onLogout}>
                      Logout
                    </button>
                 </ul>
