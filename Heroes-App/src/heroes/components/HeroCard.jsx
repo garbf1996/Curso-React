@@ -1,7 +1,31 @@
 
 
-export const HeroCard = () => {
+export const HeroCard = (
+{
+  id,
+  superhero, 
+  publisher, 
+  alter_ego,
+  first_appearance,
+  characters
+
+}
+
+) => {
+
+
+
+  const images = `/assets/hereoes/${id}.jpg`;
+ 
+
+
   return (
-    <div>HeroCard</div>
+   <>
+   <div className="col">
+    <div className="col-4">
+   <img src={images} alt={superhero} />
+    </div>
+   </div>
+   </>
   )
 }
