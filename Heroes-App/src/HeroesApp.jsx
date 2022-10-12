@@ -1,8 +1,11 @@
-import {AppRouter} from './router/AppRouter.jsx';
+import { AppRouter } from './router/AppRouter';
+
+
 export const HeroesApp = () => {
   return (
     <>
-    <AppRouter />
+        
+        <AppRouter />
     </>
   )
 }

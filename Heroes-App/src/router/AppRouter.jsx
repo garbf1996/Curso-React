@@ -1,18 +1,25 @@
+import { Route, Routes } from 'react-router-dom';
 
-import { Routes,Route} from 'react-router-dom';
-import { LoginPage } from '../auth/pages/LoginPage';
-import {HeroesRoutes} from '../heroes/routes/HeroesRoutes';
+import { HeroesRoutes } from '../heroes';
+import { LoginPage } from '../auth';
+
+
 
 export const AppRouter = () => {
   return (
-   <>
-  
-<Routes>
+    <>
+
+        <Routes>
+            
+            <Route path="login" element={<LoginPage />} />
+            
+            
+            <Route path="/*" element={ <HeroesRoutes />} />
+            
+            
+
+        </Routes>
     
-        <Route path="login" element={<LoginPage />} />
-        //Ruta de inicio
-        <Route path="/*" element={<HeroesRoutes />} />
-      </Routes>
-   </>
+    </>
   )
 }

@@ -55,7 +55,14 @@ export const heroes = [
         'first_appearance':'Detective Comics #225',
         'characters':'Martian Manhunter'
     },
- 
+    {
+        'id': 'dc-robin',
+        'superhero':'Robin/Nightwing', 
+        'publisher':'DC Comics', 
+        'alter_ego':'Dick Grayson',
+        'first_appearance':'Detective Comics #38',
+        'characters':'Dick Grayson'
+    },
     {
         'id': 'dc-blue',
         'superhero':'Blue Beetle', 
@@ -153,4 +160,3 @@ export const heroes = [
         'characters':'Norrin Radd'
     }
 ]
- 

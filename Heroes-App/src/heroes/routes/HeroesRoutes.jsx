@@ -1,23 +1,27 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navbar } from '../../ui';
+import { DcPage, HeroPage, MarvelPage, SearchPage } from '../pages';
 
-import { Routes,Route,Navigate} from 'react-router-dom';
-import { Navbar } from '../../ui'
-import { MarvelPage } from '../pages/MarvelPage'
-import { DCpage } from '../pages/DCpage'
-import { SearchPage } from '../pages/SearchPage'
-import { HerosPage } from '../pages/HerosPage'
 export const HeroesRoutes = () => {
   return (
-   <>
-  <Navbar />
-  <div className="container">
-        <Routes>
-        <Route path="marvel" element={<MarvelPage />} />
-        <Route path="dc" element={<DCpage />} />
-        <Route path="Search" element={<SearchPage />} />
-        <Route path="hero" element={<HerosPage />} />
-        <Route path="/" element={<Navigate to="/mavel" />} />
-      </Routes>
-  </div>
-   </>
+    <>
+        <Navbar />
+
+        <div className="container">
+            <Routes>
+                <Route path="marvel" element={<MarvelPage />} />
+                <Route path="dc" element={<DcPage />} />
+                
+                <Route path="search" element={<SearchPage />} />
+                <Route path="hero/:id" element={<HeroPage />} />
+                                
+
+                <Route path="/" element={<Navigate to="/marvel" />} />
+
+            </Routes>
+        </div>
+
+
+    </>
   )
 }

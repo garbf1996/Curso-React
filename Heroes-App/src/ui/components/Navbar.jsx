@@ -2,16 +2,13 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 export const Navbar = () => {
-//Custo hook para nevegacion
-const navigate = useNavigate();
 
-    //Funcion para cerrar la cesion
-    const onLogout = () =>{
-      //cerrar la cession
-     navigate('/login',{
-        //para evitar que pueda regresar a el hitorial anterio 
-        replace: true
-     });
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+        navigate('/login', {
+            replace: true
+        });
     }
 
     return (
@@ -28,29 +25,42 @@ const navigate = useNavigate();
                 <div className="navbar-nav">
 
                     <NavLink 
-                        className={({isActive})=>`nav-item nav-link ${isActive ?'active':'' }`} 
+                        className={ ({isActive}) => `nav-item nav-link  ${ isActive ? 'active':'' }` }
                         to="/marvel"
                     >
                         Marvel
                     </NavLink>
 
                     <NavLink 
-                        className={({isActive})=>`nav-item nav-link ${isActive ?'active':'' }`} 
+                        className={ ({isActive}) => `nav-item nav-link  ${ isActive ? 'active':'' }` }
                         to="/dc"
                     >
                         DC
+                    </NavLink>
+                    
+                    <NavLink 
+                        className={ ({isActive}) => `nav-item nav-link  ${ isActive ? 'active':'' }` }
+                        to="/search"
+                    >
+                        Search
                     </NavLink>
                 </div>
             </div>
 
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
-                   <span className='nav-item nav-link text-primary'>
-                     Garber Batista
-                   </span>
-                   <button className='nav-item nav-link btn' onClick={onLogout}>
-                     Logout
-                   </button>
+                   
+                    <span className="nav-item nav-link text-primary">
+                        Fernando
+                    </span>
+
+                    <button
+                        className="nav-item nav-link btn"
+                        onClick={ onLogout }
+                    >
+                        Logout
+                    </button>
+
                 </ul>
             </div>
         </nav>
