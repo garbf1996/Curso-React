@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import Modal from 'react-modal';
 import {addHours, differenceInSeconds} from 'date-fns'
 import DatePicker,{registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
+import Swal from 'sweetalert2';
 registerLocale('es', es)
+
 const customStyles = {
     content: {
       top: '50%',
@@ -21,20 +23,28 @@ export const CalendarModal = () => {
 
 
   const [isOpe, setisOpe] = useState(true)
+  const [formSubmitted, setformSubmitted] = useState(false)
   
 
 
  const oncloseModal = ()=>{
   setisOpe(false);
  }
-
+ //Validar formulario
  const onSumit = (e)=>{
   e.preventDefault();
+  setformSubmitted(true);
   const difference = differenceInSeconds(formValue.end, formValue.star);
 if(isNaN(difference) || difference <= 0){
- alert("Error de fecha")
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'Fecha incorrectas',
+  })
   return;
 }
+if(formValue.title.length <=0) return;
+console.log(formValue);
  }
 
  const [formValue, setformValue] = useState({
@@ -44,6 +54,16 @@ if(isNaN(difference) || difference <= 0){
   end: addHours (new Date(), 2)
 })
 
+const titleClass =   useMemo(() => {
+  if(!formSubmitted) return '';
+
+  return (formValue.title.length > 0)
+  ? ''
+  : 'is-invalid'
+
+}, [
+  formValue.title,formSubmitted
+])
 
 const onInputChaged = ({target}) =>{
 setformValue ({
@@ -107,7 +127,7 @@ setformValue({
         <label>Titulo y notas</label>
         <input 
             type="text" 
-            className="form-control"
+            className={`form-control ${titleClass}`}
             placeholder="Título del evento"
             name="title"
             autoComplete="off"
@@ -119,12 +139,12 @@ setformValue({
 
     <div className="form-group mb-2">
         <textarea 
-            type="text" 
+    
             className="form-control"
             placeholder="Notas"
-            rows="5"
+           
             name="notes"
-            value={formValue.note}
+            value={formValue.notes}
             onChange= {onInputChaged}
         ></textarea>
         <small id="emailHelp" className="form-text text-muted">Información adicional</small>
