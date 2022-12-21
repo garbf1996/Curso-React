@@ -24,7 +24,7 @@ export const CalendarModal = () => {
 
 
 const {isDateModalOpen}=  useUiStore();
-  const [formSubmitted, setformSubmitted] = useState(false)
+const [formSubmitted, setformSubmitted] = useState(false)
   
 
 
@@ -119,7 +119,7 @@ setformValue({
         dateFormat="Pp"
         showTimeSelect
         locale="es"
-        imeCaption='Hora'
+        timeCaption='Hora'
         />
     </div>
 
