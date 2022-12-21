@@ -25,6 +25,7 @@ const events = [{
 export const CalendarPage = () => {
 
 const [lastView, setlastView] = useState(localStorage.getItem('lastView')|| '')
+//Llamado hook en para abrir ventana modal 
 const {openDateModal}=useUiStore();
 
 
@@ -43,6 +44,7 @@ const {openDateModal}=useUiStore();
 
   const onDoubleClick  = (event)=>{
     //console.log({dobleClick: event});
+    //Abriendo modal con doble click
     openDateModal();
    
   }
