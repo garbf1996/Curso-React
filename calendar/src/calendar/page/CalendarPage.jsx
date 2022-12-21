@@ -6,6 +6,7 @@ import {addHours} from 'date-fns'
 import { localizer,getMessagesES } from '../../helpers/'
 import { CalendarEvent } from '../components/CalendarEvent'
 import { CalendarModal } from '../components/CalendarModal'
+import { useUiStore } from '../../hooks/useUiStore'
 
 const events = [{
   title: "Praticar React",
@@ -24,7 +25,7 @@ const events = [{
 export const CalendarPage = () => {
 
 const [lastView, setlastView] = useState(localStorage.getItem('lastView')|| '')
-
+const {openDateModal}=useUiStore();
 
 
   const eventStyleGetter = (event,start,end,isSelected)=>{
@@ -41,8 +42,9 @@ const [lastView, setlastView] = useState(localStorage.getItem('lastView')|| '')
   }
 
   const onDoubleClick  = (event)=>{
-    console.log({dobleClick: event});
-
+    //console.log({dobleClick: event});
+    openDateModal();
+   
   }
   const onselect  = (event)=>{
     console.log({click: event});
