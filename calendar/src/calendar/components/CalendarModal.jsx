@@ -24,15 +24,15 @@ Modal.setAppElement("#root");
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUiStore();
   const [formSubmitted, setformSubmitted] = useState(false);
-  const { activeEvent } = useCalendarStore();
+  const { activeEvent, starSavingEvent } = useCalendarStore();
   const oncloseModal = () => {
     closeDateModal();
   };
   //Validar formulario
-  const onSumit = (e) => {
+  const onSumit = async (e) => {
     e.preventDefault();
     setformSubmitted(true);
-    const difference = differenceInSeconds(formValue.end, formValue.star);
+    const difference = differenceInSeconds(formValue.end, formValue.start);
     if (isNaN(difference) || difference <= 0) {
       Swal.fire({
         icon: "error",
@@ -41,8 +41,13 @@ export const CalendarModal = () => {
       });
       return;
     }
+
     if (formValue.title.length <= 0) return;
     console.log(formValue);
+    //Todo:
+    await starSavingEvent(formValue);
+    closeDateModal();
+    setformSubmitted(false);
   };
 
   const [formValue, setformValue] = useState({
