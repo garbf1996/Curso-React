@@ -6,6 +6,7 @@ import { localizer, getMessagesES } from "../../helpers/";
 import { CalendarEvent } from "../components/CalendarEvent";
 import { CalendarModal } from "../components/CalendarModal";
 import { useUiStore, useCalendarStore } from "../../hooks/";
+import { FabAddNew } from "../components/FabAddNew";
 
 export const CalendarPage = () => {
   const [lastView, setlastView] = useState(
@@ -64,6 +65,7 @@ export const CalendarPage = () => {
         onView={onViewChaged}
       />
       <CalendarModal />
+      <FabAddNew />
     </>
   );
 };
