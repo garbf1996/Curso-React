@@ -14,7 +14,7 @@ export const CalendarPage = () => {
   //Llamado hook en para abrir ventana modal
   const { openDateModal } = useUiStore();
   //Llamado hook para los eventos
-  const { event } = useCalendarStore();
+  const { event, setActiveEvent } = useCalendarStore();
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
@@ -34,7 +34,8 @@ export const CalendarPage = () => {
     openDateModal();
   };
   const onselect = (event) => {
-    console.log({ click: event });
+    // console.log({ click: event });
+    setActiveEvent(event);
   };
 
   const onViewChaged = (event) => {

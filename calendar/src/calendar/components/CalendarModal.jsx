@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Modal from "react-modal";
 import { addHours, differenceInSeconds } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 import Swal from "sweetalert2";
-import { useUiStore } from "../../hooks/useUiStore";
+import { useUiStore, useCalendarStore } from "../../hooks";
 
 registerLocale("es", es);
 
@@ -24,7 +24,7 @@ Modal.setAppElement("#root");
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUiStore();
   const [formSubmitted, setformSubmitted] = useState(false);
-
+  const { activeEvent } = useCalendarStore();
   const oncloseModal = () => {
     closeDateModal();
   };
@@ -46,9 +46,9 @@ export const CalendarModal = () => {
   };
 
   const [formValue, setformValue] = useState({
-    title: "Garber",
-    notes: "Todos el dia",
-    star: new Date(),
+    title: "",
+    notes: "",
+    start: new Date(),
     end: addHours(new Date(), 2),
   });
 
@@ -57,6 +57,12 @@ export const CalendarModal = () => {
 
     return formValue.title.length > 0 ? "" : "is-invalid";
   }, [formValue.title, formSubmitted]);
+
+  useEffect(() => {
+    if (activeEvent !== null) {
+      setformValue({ ...activeEvent });
+    }
+  }, [activeEvent]);
 
   const onInputChaged = ({ target }) => {
     setformValue({
@@ -87,7 +93,7 @@ export const CalendarModal = () => {
         <div className='form-group mb-2'>
           <label>Fecha y hora inicio</label>
           <DatePicker
-            selected={formValue.star}
+            selected={formValue.start}
             onChange={(event) => onDateChanget(event, "start")}
             className='form-control'
             dateFormat='Pp'
