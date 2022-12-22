@@ -2,25 +2,10 @@ import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Calendar } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { addHours } from "date-fns";
 import { localizer, getMessagesES } from "../../helpers/";
 import { CalendarEvent } from "../components/CalendarEvent";
 import { CalendarModal } from "../components/CalendarModal";
-import { useUiStore } from "../../hooks/useUiStore";
-
-const events = [
-  {
-    title: "Praticar React",
-    note: "Todo dias",
-    start: new Date(),
-    end: addHours(new Date(), 2),
-    bgColor: "#fafafa",
-    user: {
-      _id: "123",
-      name: "Garber",
-    },
-  },
-];
+import { useUiStore, useCalendarStore } from "../../hooks/";
 
 export const CalendarPage = () => {
   const [lastView, setlastView] = useState(
@@ -28,6 +13,8 @@ export const CalendarPage = () => {
   );
   //Llamado hook en para abrir ventana modal
   const { openDateModal } = useUiStore();
+  //Llamado hook para los eventos
+  const { event } = useCalendarStore();
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
@@ -61,7 +48,7 @@ export const CalendarPage = () => {
       <Calendar
         culture='es'
         localizer={localizer}
-        events={events}
+        events={event}
         startAccessor='start'
         endAccessor='end'
         defaultView={lastView}
