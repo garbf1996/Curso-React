@@ -3,11 +3,9 @@ import { Navbar } from "../components/Navbar";
 import { Calendar } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { localizer, getMessagesES } from "../../helpers/";
-import { CalendarEvent } from "../components/CalendarEvent";
-import { CalendarModal } from "../components/CalendarModal";
+import { CalendarEvent, CalendarModal, FabAddNew, FabDelete } from "../inedx";
+
 import { useUiStore, useCalendarStore } from "../../hooks/";
-import { FabAddNew } from "../components/FabAddNew";
-import { FabDelete } from "../components/FabDelete";
 
 export const CalendarPage = () => {
   const [lastView, setlastView] = useState(
