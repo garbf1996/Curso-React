@@ -7,6 +7,7 @@ import { CalendarEvent } from "../components/CalendarEvent";
 import { CalendarModal } from "../components/CalendarModal";
 import { useUiStore, useCalendarStore } from "../../hooks/";
 import { FabAddNew } from "../components/FabAddNew";
+import { FabDelete } from "../components/FabDelete";
 
 export const CalendarPage = () => {
   const [lastView, setlastView] = useState(
@@ -66,6 +67,7 @@ export const CalendarPage = () => {
       />
       <CalendarModal />
       <FabAddNew />
+      <FabDelete />
     </>
   );
 };
