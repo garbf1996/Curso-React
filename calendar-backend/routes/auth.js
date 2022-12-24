@@ -4,6 +4,7 @@ host + /api/auth
 */
 
 const { Router } = require("express");
+const { check } = require("express-validator");
 
 const routes = Router();
 
@@ -13,10 +14,26 @@ const {
   revalidarToken,
 } = require("../controller/auth");
 
-routes.post("/new", crearUsuario);
-console.log(crearUsuario);
+routes.post(
+  "/new",
+  /*Validando  con express-validator*/
+  //Validando si el campo de nombre si es vacio
+  [check("name", "El nombre es obligatorios").not().isEmpty()],
+  //Validando si el email es valido
+  [check("email", "El email no es valido").isEmail()],
+  //Validando si el password  tiene 6 caracteres
+  [check("password", "El password es obligatorios").isLength({ min: 6 })],
 
-routes.post("/", loginUsurio);
+  crearUsuario
+);
+
+routes.post(
+  "/",
+  [check("email", "El email no es valido").isEmail()],
+  [check("password", "El password es obligatorios").isLength({ min: 6 })],
+
+  loginUsurio
+);
 
 routes.get("/renew", revalidarToken);
 
