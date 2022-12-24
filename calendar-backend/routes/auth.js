@@ -14,6 +14,7 @@ const {
 } = require("../controller/auth");
 
 routes.post("/new", crearUsuario);
+console.log(crearUsuario);
 
 routes.post("/", loginUsurio);
 
