@@ -1,11 +1,13 @@
 const express = require("express");
 require("dotenv").config();
 const bodyparse = require("body-parser");
+const { dbConexion } = require("./data/config");
 console.log(process.env);
 
 // Crear el servidor de express
 
 const app = express();
+dbConexion();
 
 app.use(bodyparse.json());
 
