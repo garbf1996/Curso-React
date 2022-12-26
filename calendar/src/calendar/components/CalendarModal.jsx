@@ -28,6 +28,7 @@ export const CalendarModal = () => {
   const oncloseModal = () => {
     closeDateModal();
   };
+
   //Validar formulario
   const onSumit = async (e) => {
     e.preventDefault();
