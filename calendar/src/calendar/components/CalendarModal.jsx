@@ -36,7 +36,7 @@ export const CalendarModal = () => {
     const difference = differenceInSeconds(formValue.end, formValue.start);
     if (isNaN(difference) || difference <= 0) {
       Swal.fire({
-        icon: "error",
+        icon: "Error",
         title: "Error",
         text: "Fecha incorrectas",
       });
