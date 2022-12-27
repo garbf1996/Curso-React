@@ -3,16 +3,27 @@ const Usuario = require("../model/Usuario");
 
 /*Funcio para crear usuario*/
 const crearUsuario = async (req, res = response) => {
+  const { email, password } = req.body;
   try {
     //Guardano dato
-    const newUser = Usuario(req.body);
-    console.log(newUser);
 
+    let newUser = await Usuario.findOne({ email });
+    console.log(newUser);
+    //Validadon si el usurio exicte
+    if (newUser) {
+      return res.status(400).json({
+        ok: false,
+        mgs: "El usurio exicte",
+      });
+    }
+
+    newUser = Usuario(req.body);
     await newUser.save();
 
     res.status(201).json({
       ok: true,
-      mgs: "registro",
+      uid: newUser.id,
+      name: newUser.name,
     });
   } catch (error) {
     console.log(error);
