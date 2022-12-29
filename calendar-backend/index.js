@@ -2,12 +2,15 @@ const express = require("express");
 require("dotenv").config();
 const bodyparse = require("body-parser");
 const { dbConexion } = require("./data/config");
+const cros = require("cors");
 
 // Crear el servidor de express
 
 const app = express();
 dbConexion();
 
+//Configurar CORS
+app.use(cros());
 app.use(bodyparse.json());
 
 app.use(bodyparse.urlencoded({ extended: true }));
