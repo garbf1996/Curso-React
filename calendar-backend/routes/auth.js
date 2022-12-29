@@ -15,6 +15,7 @@ const {
 } = require("../controller/auth");
 const { validarCompos } = require("../middlewares/validar-camos");
 
+const { validarToken } = require("../middlewares/validar-token");
 routes.post(
   "/new",
   /*Validando  con validar-comos.js*/
@@ -43,6 +44,6 @@ routes.post(
   loginUsurio
 );
 
-routes.get("/renew", revalidarToken);
+routes.get("/renew", validarToken, revalidarToken);
 
 module.exports = routes;
