@@ -20,6 +20,8 @@ app.use(express.static("public"));
 
 //Rutas
 app.use("/api/auth", require("./routes/auth"));
+//TODO: CRUD: Eventos
+app.use("/api/events", require("./routes/events"));
 
 //Lectura y parseo del boby
 
