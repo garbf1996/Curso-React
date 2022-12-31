@@ -1,6 +1,9 @@
 const { Router } = require("express");
 const router = Router();
 const { validarToken } = require("../middlewares/validar-token");
+const { validarCompos } = require("../middlewares/validar-camos");
+const { check } = require("express-validator");
+const { isDate } = require("../jwt/isDate");
 
 const {
   getEventos,
@@ -20,7 +23,18 @@ router.use(validarToken);
 router.get("/", getEventos);
 
 // Crear un nuevo evento
-router.post("/", craeEvents);
+router.post(
+  // v
+  "/",
+  [
+    check("title", "El titulo es obligatorio").not().isEmpty(),
+    check("start", "La fecha de inicio es obligatoria").custom(isDate),
+    check("end", "La fecha de finalización es obligatoria").custom(isDate),
+
+    validarCompos,
+  ],
+  craeEvents
+);
 
 // Actualizar evento
 router.put("/:id", updateEvents);
