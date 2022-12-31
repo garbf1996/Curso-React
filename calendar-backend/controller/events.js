@@ -8,6 +8,7 @@ const getEventos = (req, res = response) => {
 };
 
 const craeEvents = (req, res = response) => {
+  console.log(req.body);
   res.json({
     ok: true,
     msg: "Event created",
