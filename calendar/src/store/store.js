@@ -1,10 +1,12 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { uiSlice, calendarSlice } from "./";
+import { authSlice } from "./auth/authSlice";
 
 export const store = configureStore({
   reducer: {
     caledar: calendarSlice.reducer,
     ui: uiSlice.reducer,
+    auth: authSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
