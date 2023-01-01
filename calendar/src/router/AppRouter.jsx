@@ -5,7 +5,7 @@ import { CalendarPage } from "../calendar/page/CalendarPage";
 import { getEnv } from "../helpers";
 
 export const AppRouter = () => {
-  const authStatus = "authenticated";
+  const authStatus = "not-authenticated";
 
   console.log(getEnv("REACT_APP_API_URL"));
 
