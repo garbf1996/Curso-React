@@ -23,6 +23,7 @@ export const CalendarPage = () => {
       opacity: 0.8,
       color: "white",
     };
+
     return {
       style,
     };
