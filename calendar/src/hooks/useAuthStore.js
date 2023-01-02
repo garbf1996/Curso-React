@@ -27,6 +27,26 @@ export const useAuthStore = () => {
     }
   };
 
+  const startRegister = async ({ email, password, name }) => {
+    dispatch(onChecking());
+    try {
+      const { data } = await calendarApi.post("/auth/new", {
+        email,
+        password,
+        name,
+      });
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("token-init-date", new Date().getTime());
+      dispatch(onLogin({ name: data.name, uid: data.uid }));
+    } catch (error) {
+      //Validar si el usuario ya existe
+      dispatch(onLogout(error.response.data.msg || "Usuario ya existe"));
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10);
+    }
+  };
+
   return {
     //* Propiedades
     errorMessage,
@@ -35,5 +55,6 @@ export const useAuthStore = () => {
 
     //* Métodos
     startLogin,
+    startRegister,
   };
 };

@@ -19,7 +19,7 @@ const registerFormFields = {
 
 export const LoginPage = () => {
   const { loginEmail, loginPassword, onInputChange } = useForm(loginFormFields);
-  const { startLogin, errorMessage } = useAuthStore();
+  const { startLogin, errorMessage, startRegister } = useAuthStore();
 
   useEffect(() => {
     if (errorMessage) {
@@ -41,14 +41,32 @@ export const LoginPage = () => {
     startLogin({ email: loginEmail, password: loginPassword });
   };
 
+  //TODO: Hacer el registro
   const registreLogin = (e) => {
     e.preventDefault();
-
+    //Validar que las contraseñas sean iguales
     if (registerPassword !== registerPassword2) {
-      return alert("Las contraseñas no coinciden");
+      return Swal.fire("Error", "Las contraseñas no coinciden", "error");
+    } else if (registerPassword.length < 6) {
+      return Swal.fire(
+        "Error",
+        "La contraseña debe tener al menos 6 caracteres",
+        "error"
+      );
     }
-  };
 
+    //Vlidar correo
+    const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if (!regex.test(registerEmail)) {
+      return Swal.fire("Error", "El correo no es válido", "error");
+    }
+
+    startRegister({
+      name: registerName,
+      email: registerEmail,
+      password: registerPassword,
+    });
+  };
   return (
     <>
       <div className='container login-container'>
