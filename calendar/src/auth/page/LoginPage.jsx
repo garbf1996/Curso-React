@@ -60,7 +60,7 @@ export const LoginPage = () => {
     if (!regex.test(registerEmail)) {
       return Swal.fire("Error", "El correo no es válido", "error");
     }
-
+    //TODO: Hacer el registro
     startRegister({
       name: registerName,
       email: registerEmail,

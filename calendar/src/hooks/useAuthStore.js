@@ -26,7 +26,7 @@ export const useAuthStore = () => {
       }, 10);
     }
   };
-
+  //New user register
   const startRegister = async ({ email, password, name }) => {
     dispatch(onChecking());
     try {
