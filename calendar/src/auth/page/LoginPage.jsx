@@ -1,6 +1,7 @@
 import React from "react";
 import "./LoginPage.css";
 import { useForm } from "../../hooks/userForm";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 const loginFormFields = {
   loginEmail: "",
@@ -16,6 +17,7 @@ const registerFormFields = {
 
 export const LoginPage = () => {
   const { loginEmail, loginPassword, onInputChange } = useForm(loginFormFields);
+  const { startLogin } = useAuthStore();
 
   const {
     registerName,
@@ -28,7 +30,7 @@ export const LoginPage = () => {
   const loginSubmit = (e) => {
     e.preventDefault();
 
-    loginStar({ email: loginEmail, password: loginPassword });
+    startLogin({ email: loginEmail, password: loginPassword });
   };
 
   const registreLogin = (e) => {
