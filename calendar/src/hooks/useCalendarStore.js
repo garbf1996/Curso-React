@@ -1,43 +1,46 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  onAddNewEvent,
-  onDeleteEvent,
-  onSetActiveEvent,
-  onUpdateEvent,
-} from "../store";
+import { useDispatch, useSelector } from 'react-redux';
+import { onAddNewEvent, onDeleteEvent, onSetActiveEvent, onUpdateEvent } from '../store';
+
 
 export const useCalendarStore = () => {
-  const dispatch = useDispatch();
+  
+    const dispatch = useDispatch();
+    const { events, activeEvent } = useSelector( state => state.calendar );
 
-  const setActiveEvent = (calendarEvent) => {
-    dispatch(onSetActiveEvent(calendarEvent));
-  };
-
-  const { event, activeEvent } = useSelector((state) => state.caledar);
-
-  const starSavingEvent = async (calendarEvent) => {
-    // Todo: llegar al backend
-    //Todo bien
-    if (calendarEvent._id) {
-      dispatch(onUpdateEvent({ ...calendarEvent }));
-    } else {
-      //Creando nuevo eventos
-      dispatch(onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }));
+    const setActiveEvent = ( calendarEvent ) => {
+        dispatch( onSetActiveEvent( calendarEvent ) )
     }
-  };
 
-  const deleEvent = () => {
-    dispatch(onDeleteEvent());
-  };
+    const startSavingEvent = async( calendarEvent ) => {
+        // TODO: llegar al backend
 
-  return {
-    //* Propiedades
-    event,
-    activeEvent,
-    hasEventSelect: !!activeEvent,
-    //*Metodos
-    setActiveEvent,
-    starSavingEvent,
-    deleEvent,
-  };
-};
+        // Todo bien
+        if( calendarEvent._id ) {
+            // Actualizando
+            dispatch( onUpdateEvent({ ...calendarEvent }) );
+        } else {
+            // Creando
+            dispatch( onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }) );
+        }
+    }
+
+    const startDeletingEvent = () => {
+        // Todo: Llegar al backend
+
+
+        dispatch( onDeleteEvent() );
+    }
+
+
+    return {
+        //* Propiedades
+        activeEvent,
+        events,
+        hasEventSelected: !!activeEvent,
+
+        //* Métodos
+        startDeletingEvent,
+        setActiveEvent,
+        startSavingEvent,
+    }
+}

@@ -1,4 +1,5 @@
-export const getMessagesES =() =>{
+
+export const getMessagesES = () => {
     return {
         allDay: 'Todo el día',
         previous: '<',
@@ -13,5 +14,6 @@ export const getMessagesES =() =>{
         event: 'Evento',
         noEventsInRange: 'No hay eventos en este rango',
         showMore: total => `+ Ver más (${total})`
-    }
+    };
 }
+
