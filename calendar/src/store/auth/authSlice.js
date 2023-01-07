@@ -24,7 +24,7 @@ export const authSlice = createSlice({
       state.user = {};
       state.errorMessage = payload;
     },
-    clearErrorMessage: () => {
+    clearErrorMessage: (state) => {
       state.errorMessage = undefined;
     },
   },

@@ -3,7 +3,7 @@ import { calendarApi } from "../api";
 import { onChecking, onLogin, onLogout, clearErrorMessage } from "../store";
 
 export const useAuthStore = () => {
-  const { status, user, errorMessages } = useSelector((state) => state.auth);
+  const { status, user, errorMessage } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const startLogin = async ({ email, password }) => {
@@ -17,7 +17,7 @@ export const useAuthStore = () => {
       dispatch(onLogout("Credenciales incorreto"));
 
       setTimeout(() => {
-        dispatch(clearErrorMessage);
+        dispatch(clearErrorMessage());
       }, 10);
     }
   };
@@ -26,7 +26,7 @@ export const useAuthStore = () => {
     //* Propiedades
     status,
     user,
-    errorMessages,
+    errorMessage,
     //*Metodos
     startLogin,
   };
