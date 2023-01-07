@@ -1,5 +1,5 @@
 import "./LoginPage.css";
-import { useForm } from "../../hooks";
+import { useAuthStore, useForm } from "../../hooks";
 
 const loginFormFields = {
   loginEmail: "",
@@ -14,6 +14,8 @@ const registerFormFields = {
 };
 
 export const LoginPage = () => {
+  const { startLogin } = useAuthStore();
+
   const {
     loginEmail,
     loginPassword,
@@ -35,6 +37,11 @@ export const LoginPage = () => {
     if (loginEmail == "" || loginPassword == "") {
       return alert("Los compos son obligatorios");
     }
+
+    startLogin({
+      email: loginEmail,
+      password: loginPassword,
+    });
   };
 
   const onsubmitRegistre = (e) => {
