@@ -40,7 +40,9 @@ export const LoginPage = () => {
   const onsubmitRegistre = (e) => {
     e.preventDefault();
 
-    console.log("hay algo");
+    if (registerPassword <= 6) {
+      alert("hay meno de 6");
+    }
   };
 
   return (
