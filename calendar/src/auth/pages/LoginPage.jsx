@@ -16,7 +16,7 @@ const registerFormFields = {
 };
 
 export const LoginPage = () => {
-  const { startLogin, errorMessage } = useAuthStore();
+  const { startLogin, errorMessage, startRegister } = useAuthStore();
 
   const {
     loginEmail,
@@ -49,9 +49,16 @@ export const LoginPage = () => {
   const onsubmitRegistre = (e) => {
     e.preventDefault();
 
-    if (registerPassword <= 6) {
-      alert("hay meno de 6");
+    if (registerPassword !== registerPassword2) {
+      Swal.fire("Error en registrase", "Password incorecto", "error");
+      return;
     }
+
+    startRegister({
+      name: registerName,
+      email: registerEmail,
+      password: registerPassword,
+    });
   };
 
   useEffect(() => {
