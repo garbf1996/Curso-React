@@ -7,6 +7,7 @@ import {
 } from "../store";
 
 import { calendarApi } from "../api";
+import { convertDataEvents } from "../helpers";
 
 export const useCalendarStore = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,18 @@ export const useCalendarStore = () => {
     dispatch(onDeleteEvent());
   };
 
+  const starLoadingEvents = async () => {
+    const { data } = await calendarApi.get("/events");
+    const eventos = convertDataEvents(data.events);
+    console.log(eventos);
+
+    try {
+    } catch (error) {
+      console.log("Error cargando events");
+      console.log(error);
+    }
+  };
+
   return {
     //* Propiedades
     activeEvent,
@@ -50,5 +63,6 @@ export const useCalendarStore = () => {
     startDeletingEvent,
     setActiveEvent,
     startSavingEvent,
+    starLoadingEvents,
   };
 };
